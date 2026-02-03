@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="icon" href="img/lazo.png">
+       <link href="./style.css" type="text/css" rel="stylesheet">
+       <script type="text/javascript" src="./script.js"></script>
+    <title>𝄞𝄢 Silent Paradise ‧˚꒰♬⋆.˚୭ ˚. ᵎᵎ</title>
+        <style>
+    </style>
+</head>
+<body>
+        <div class="container">
+          <div class="carousel-container">
+    <!-- Aquí van tus imágenes -->
+    <div class="carousel-slides">
+        <div class="slide">
+            <img src="./img/image.jpg" alt="Descripción 1">
+        </div>
+        <div class="slide">
+            <img src="./img/image2.jpg" alt="Descripción 2">
+        </div>
+        <div class="slide">
+            <img src="./img/imagen3.png" alt="Descripción 3">
+        </div>
+    </div>
+
+    <!-- Flechas de navegación -->
+    <button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+    <button class="carousel-button next" onclick="moveSlide(1)">❯</button>
+
+    <!-- Puntos indicadores -->
+    <div class="carousel-indicators">
+        <span class="indicator active" onclick="goToSlide(0)"></span>
+        <span class="indicator" onclick="goToSlide(1)"></span>
+        <span class="indicator" onclick="goToSlide(2)"></span>
+    </div>
+</div>
+          <div class="name"></div>
+        <div class="barra">
+              <img src="./img/Sparadise.png" class="logo">
+    <ul id="menu">
+        <a href="index.html">HOME</a>
+        <a href="guide.html">GUIDE</a>
+        <a href="new.html">NEW</a>
+        <a href="collection.html">COLLECTION</a>
+        <a href="concept.html">CONCEPT</a>
+        <a href="topics.html">TOPICS</a>
+        <a href="signup.html">SIGN UP/LOGIN</a>
+    </ul>
+        </div>
+          <div class="barra2"></div>
+        </div>
+      <div class="cursor-follower" id="follower"></div>
+    <script>
+            const follower = document.getElementById('follower');
+
+             let mouseX = 0, mouseY = 0;
+             let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    function animate() {
+      followerX += (mouseX - followerX) * 0.1;
+      followerY += (mouseY - followerY) * 0.1;
+      
+      follower.style.left = followerX + 'px';
+      follower.style.top = followerY + 'px';
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+    let currentSlide = 0;
+    
+    // Obtenemos todos los elementos
+    const slides = document.querySelectorAll('.slide');
+    const slidesContainer = document.querySelector('.carousel-slides');
+    const indicators = document.querySelectorAll('.indicator');
+    const totalSlides = slides.length;
+
+    // Función para moverse entre imágenes
+    function moveSlide(direction) {
+        currentSlide += direction; // +1 o -1
+        
+        // Si llegamos al final, volvemos al inicio
+        if (currentSlide >= totalSlides) {
+            currentSlide = 0;
+        } else if (currentSlide < 0) {
+            currentSlide = totalSlides - 1;
+        }
+        
+        updateCarousel();
+    }
+
+    // Función para ir a una imagen específica
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+    }
+
+    // Actualiza la posición del carrusel
+    function updateCarousel() {
+        // Calcula cuánto mover (-100%, -200%, etc.)
+        const offset = -currentSlide * 100;
+        slidesContainer.style.transform = `translateX(${offset}%)`;
+        
+        // Actualiza el punto activo
+        indicators.forEach((indicator, index) => {
+            if (index === currentSlide) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+
+    </script>
+
+</body>
+</html>
