@@ -11,17 +11,7 @@
             scroll-behavior: smooth;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1600px;
-            min-height: 430vh;
-            margin: 0 auto;
-            padding: 20px;
-            background: #ffffff;
-            position: relative;
-            z-index: 1;
-        }
-
+   
         .barra {
             width: 1905px;
             height: 16vh;
@@ -240,4 +230,5 @@
 
 .indicator.active {
     background-color: rgb(241, 235, 241); /* Punto activo en blanco */
+
 }
